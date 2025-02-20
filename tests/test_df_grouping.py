@@ -143,3 +143,23 @@ def test_split_df_by_tgs(
     for i, tg in enumerate(time_groups):
         assert dfs[i].index[0] == tg.start
         assert dfs[i].index[-1] == tg.end
+
+
+@pytest.mark.parametrize(
+    "df, time_groups",
+    test_dataframes,
+)
+def test_get_freq_consistent_dfs(
+    df: pd.DataFrame,
+    time_groups: list[TimeGroup],
+) -> None:
+    """Test get_time_groups method."""
+    from timegroups.df_grouping import get_freq_consistent_dfs
+
+    dfs = get_freq_consistent_dfs(df, pd.Timedelta("1D"))
+    assert len(dfs) == len(time_groups)
+    for tg, df in zip(time_groups, dfs, strict=False):
+        assert df.index[0] == tg.start
+        assert df.index[-1] == tg.end
+        assert df.index.freq is not None
+        assert df.isna().sum().sum() == 0

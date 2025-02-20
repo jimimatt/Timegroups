@@ -1,6 +1,6 @@
 [project]
 name = "timegroups"
-version = "0.1.0"
+version = "0.1.1"
 description = "Collection of utilities to group time series data using pandas"
 readme = "README.md"
 authors = [

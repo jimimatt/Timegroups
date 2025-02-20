@@ -91,8 +91,8 @@ def get_freq_consistent_dfs(df: pd.DataFrame, freq: pd.Timedelta, time_delta_fac
     dfs: list[pd.DataFrame] = []
     tgs = get_time_groups(df.index, freq=freq, time_delta_factor=time_delta_factor)
     for tg in tgs:
-        df = df.loc[tg.start : tg.end]
-        df = align_datetime_index(df, freq)
-        df = df.interpolate("linear")
-        dfs.append(df)
+        sub_df = df.loc[tg.start : tg.end]
+        sub_df = align_datetime_index(sub_df, freq)
+        sub_df = sub_df.interpolate("linear")
+        dfs.append(sub_df)
     return dfs
