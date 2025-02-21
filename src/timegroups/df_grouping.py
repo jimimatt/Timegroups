@@ -68,7 +68,7 @@ def align_datetime_index(
         raise ValueError("Index must be a DatetimeIndex.")
     df.index = df.index.round(freq=freq)  # type: ignore
     if duplicates == "silent":
-        df = df.drop_duplicates(keep="first")
+        df = df[~df.index.duplicated(keep="first")]
     else:
         if df.index.duplicated().any():
             raise ValueError("Index contains duplicates.")
