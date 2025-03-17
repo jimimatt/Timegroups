@@ -1,5 +1,5 @@
 from timegroups.df_grouping import (
-    align_datetime_index,
+    align_datetime,
     get_freq_consistent_dfs,
     get_time_groups,
     guess_freq,
@@ -12,6 +12,6 @@ __all__ = [
     "guess_freq",
     "get_time_groups",
     "split_df_by_tgs",
-    "align_datetime_index",
+    "align_datetime",
     "get_freq_consistent_dfs",
 ]
